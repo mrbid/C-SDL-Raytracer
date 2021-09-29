@@ -1,8 +1,6 @@
 # C-SDL-Raytracer
 Raytracing using SDL in C.
 
----
-
 ### Abstract
 Application 16x16 icons are from http://www.forrestwalter.com/icons/
 
