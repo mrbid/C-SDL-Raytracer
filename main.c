@@ -277,13 +277,13 @@ Uint32 frame_counter = 0;
 static int renderThread(void *ptr)
 {
     SDL_SetThreadPriority(SDL_THREAD_PRIORITY_HIGH);
-    const Uint32 i = *(int*)ptr;
-    printf("Thread Init: %u\n", i);
+    const Uint32 ti = *(int*)ptr;
+    printf("Thread Init: %u\n", ti);
 
     while(1)
     {
         // this is the screen swapper thread
-        if(i == 0)
+        if(ti == 0)
         {
             // fps counter
             static Uint32 lt = 0;
@@ -305,7 +305,7 @@ static int renderThread(void *ptr)
         }
 
         // cast a ray per pixel
-        const Uint32 ofs = i*ppc;
+        const Uint32 ofs = ti*ppc;
         const Uint32 end = ofs+ppc;
         Uint32* p = (Uint32*)bb->pixels + ofs;
         for(Uint32 i = ofs; i < end; i++, ++p)
