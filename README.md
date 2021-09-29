@@ -8,7 +8,7 @@ Just a simple ray tracer that uses spheres.
 
 Lambertian/Fullbright shaded with the light source being behind the ray origin (camera).
 
-Video: https://youtu.be/rUw2HNggEwg
+Video: https://youtu.be/IDQMpmYfGuU
 
 ---
 
