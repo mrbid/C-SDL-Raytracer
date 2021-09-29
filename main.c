@@ -239,22 +239,6 @@ Uint32 trace(const vec rayorig, const vec raydir)
     return SDL_MapRGB(bb->format, (Uint8)(sphr->r*255.f), (Uint8)(sphr->g*255.f), (Uint8)(sphr->b*255.f));
 }
 
-// set perspective
-void setPerspective(float fov)
-{
-    p_fov = fov;
-    p_width = (float)screen_rect.w;
-    p_height = (float)screen_rect.h;
-
-    p_invWidth = 1.f / p_width;
-    p_invHeight = 1.f / p_height;
-
-    p_aspectratio = p_width * p_invHeight;
-    p_angle = tan(d2PI * p_fov * 0.005555556156f); // d2PI * p_fov / 180.f
-    
-    genRayTable();
-}
-
 // generate ray origin table
 void genRayTable()
 {
@@ -270,6 +254,22 @@ void genRayTable()
             vCopy(&raydir_table[i], raydir);
         }
     }
+}
+
+// set perspective
+void setPerspective(float fov)
+{
+    p_fov = fov;
+    p_width = (float)screen_rect.w;
+    p_height = (float)screen_rect.h;
+
+    p_invWidth = 1.f / p_width;
+    p_invHeight = 1.f / p_height;
+
+    p_aspectratio = p_width * p_invHeight;
+    p_angle = tan(d2PI * p_fov * 0.005555556156f); // d2PI * p_fov / 180.f
+    
+    genRayTable();
 }
 
 // render thread (multi-threaded)
