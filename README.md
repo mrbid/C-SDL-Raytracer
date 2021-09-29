@@ -48,7 +48,7 @@ https://www.scratchapixel.com/about.php
 
 ### References
 
-https://fabiensanglard.net/rayTracing_back_of_business_card/
-https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing/how-does-it-work
-https://raytracing.github.io/
+https://fabiensanglard.net/rayTracing_back_of_business_card/<br>
+https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing/how-does-it-work<br>
+https://raytracing.github.io/<br>
 https://github.com/define-private-public/PSRayTracing (very cool project by Benjamin Summerton)
