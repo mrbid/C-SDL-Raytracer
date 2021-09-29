@@ -6,7 +6,7 @@ Application 16x16 icons are from http://www.forrestwalter.com/icons/
 
 Just a simple ray tracer that uses spheres.
 
-Lambertian/Fullbright shaded with the light source being behind the ray origin (camera)
+Lambertian/Fullbright shaded with the light source being behind the ray origin (camera).
 
 ---
 
