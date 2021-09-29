@@ -24,7 +24,7 @@ Also multi-threaded mod does not seem to render anything on my graphics card. Bu
 
 If you are compiling on windows unzip SDL2.zip to the project directory.
 
-To launch multi-threaded: ./ray multi
+To launch multi-threaded: `./ray multi`
 
 But only single threaded has crude sphere motion to demonstrate the distance aliasing.
 
