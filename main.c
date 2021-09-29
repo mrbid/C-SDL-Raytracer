@@ -125,8 +125,8 @@ void loadAssets(SDL_Surface* screen)
 }
 
 // helper functions
-float fMax(float a, float b){return a > b ? a : b;}
-float fMin(float a, float b){return a < b ? a : b;}
+static inline float fMax(float a, float b){return a > b ? a : b;}
+static inline float fMin(float a, float b){return a < b ? a : b;}
 
 // check intersection with a sphere
 int intersect(const vec rayorig, const vec raydir, float* t0, const sphere* s)
