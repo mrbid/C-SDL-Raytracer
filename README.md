@@ -35,13 +35,13 @@ Compile for Windows on Linux: ./compile_win.sh
 
 ### Origin
 
-This is a C implementation of:
+This is a C implementation of:<br>
 https://www.scratchapixel.com/code.php?id=3&origin=/lessons/3d-basic-rendering/introduction-to-ray-tracing&src=0
 
-Which is part of this article:
+Which is part of this article:<br>
 https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing/how-does-it-work
 
-Which is written by Jean-Colas Prunier who runs Scratchapixel, more information about Jean can be found here:
+Which is written by Jean-Colas Prunier who runs Scratchapixel, more information about Jean can be found here:<br>
 https://www.scratchapixel.com/about.php
 
 ---
