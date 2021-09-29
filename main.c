@@ -251,6 +251,8 @@ void setPerspective(float fov)
 
     p_aspectratio = p_width * p_invHeight;
     p_angle = tan(d2PI * p_fov * 0.005555556156f); // d2PI * p_fov / 180.f
+    
+    genRayTable();
 }
 
 // generate ray origin table
@@ -392,9 +394,6 @@ int main(int argc, char *args[])
 
     // set perspective
     setPerspective(60.f);
-
-    // gen ray table
-    genRayTable();
 
     // to thread or not to thread?
     SDL_Thread* single_thread = NULL;
