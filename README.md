@@ -25,8 +25,8 @@ I am not sure if I am going to continue this project because it just seems a lit
 just so that I can raytrace some (at best) lambaritan spheres at ~30fps.
 
 Also multi-threaded mod does not seem to render anything on my RTX graphics card. But it seems to work fine
-on my integrated Intel Iris XE. ¯\\_(ツ)_/¯ not that multi-threading a real-time raytracer has much benefit
-anyway.
+on my integrated Intel Iris XE.
+¯\\_(ツ)_/¯ not that multi-threading a real-time raytracer has much benefit anyway.
 
 If you are compiling on windows unzip SDL2.zip to the project directory.
 
