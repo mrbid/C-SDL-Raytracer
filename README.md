@@ -28,10 +28,10 @@ To launch multi-threaded: ./ray multi
 
 But only single threaded has crude sphere motion to demonstrate the distance aliasing.
 
-Compile Linux: ./compile.sh
-Compile Windows: ./compile.bat
+Compile Linux: `./compile.sh`<br>
+Compile Windows: `./compile.bat`
 
-Compile for Windows on Linux: ./compile_win.sh
+Compile for Windows on Linux: `./compile_win.sh`
 
 ---
 
