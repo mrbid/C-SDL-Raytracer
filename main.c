@@ -228,7 +228,6 @@ Uint32 trace(const vec rayorig, const vec raydir)
         vec N;
         vAdd(&N, rayorig, raydir);
         vMulS(&N, N, tnear);
-        vSub(&N, N, (vec){0.f, 0.f, -1.f});
 
         // return normals as surface colour
         const vec c1 = (vec){0.5f*(N.x+1.f), 0.5f*(N.y+1.f), 0.5f*(N.z+1.f)};
