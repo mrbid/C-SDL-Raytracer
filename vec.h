@@ -22,6 +22,7 @@
 #define RADIAN 0.01745329238f   // PI / 180 (1 Degree as Radians
 
 #define FLOAT_MAX 9223372036854775807.0f
+#define INV_FLOAT_MAX 1.084202172e-19F
 
 typedef struct{
     float x,y,z,w;
@@ -43,6 +44,8 @@ void  vReflect(vec* r, const vec v, const vec n);
 
 int vEqualTol(const vec a, const vec b, const float tol);
 int vEqualInt(const vec a, const vec b);
+void vMin(vec* r, const vec v1, const vec v2);
+void vMax(vec* r, const vec v1, const vec v2);
 
 void  vNorm(vec* v);
 float vDist(const vec v1, const vec v2);
@@ -127,7 +130,7 @@ float randf()
     srandfq = _m_to_int64(mm0);
 
     _m_empty();
-    return ( fabs(srandfq+1e-7f) / FLOAT_MAX );
+    return ( fabs(srandfq+1e-7f) * INV_FLOAT_MAX );
 }
 
 #endif
@@ -238,6 +241,34 @@ int vEqualTol(const vec a, const vec b, const float tol)
         return 1;
     else
         return 0;
+}
+
+void vMin(vec* r, const vec v1, const vec v2)
+{
+    if(v1.x < v2.x && v1.y < v2.y && v1.z < v2.z)
+    {
+        r->x = v1.x;
+        r->y = v1.y;
+        r->z = v1.z;
+    }
+
+    r->x = v2.x;
+    r->y = v2.y;
+    r->z = v2.z;
+}
+
+void vMax(vec* r, const vec v1, const vec v2)
+{
+    if(v1.x > v2.x && v1.y > v2.y && v1.z > v2.z)
+    {
+        r->x = v1.x;
+        r->y = v1.y;
+        r->z = v1.z;
+    }
+
+    r->x = v2.x;
+    r->y = v2.y;
+    r->z = v2.z;
 }
 
 int vec_ftoi(float f)
