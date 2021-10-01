@@ -26,7 +26,7 @@ If you are compiling on windows unzip SDL2.zip to the project directory.
 
 To launch multi-threaded: `./ray multi`
 
-But only single threaded has crude sphere motion to demonstrate the distance aliasing.
+Only single threaded has crude sphere motion to demonstrate the distance aliasing.
 
 **Compile Linux:** `./compile.sh`<br>
 **Compile Windows:** `./compile.bat`<br>
