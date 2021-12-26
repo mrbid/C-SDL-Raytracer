@@ -2,24 +2,31 @@
     James William Fletcher (james@voxdsp.com)
         September 2021
 
-    Portable floating-point Vec3 lib with SSE support
+    Portable floating-point Vec3 lib with basic SSE support
 */
 
 #ifndef VEC_H
 #define VEC_H
 
-#include <x86intrin.h>
+#include <math.h>
+#include <string.h>
 
 // #define NOSSE
 #if !defined(__linux__) || defined(NOSSE)
     #define SEIR_RAND
 #endif
 
+#ifndef NOSSE
+    #include <x86intrin.h>
+#endif
+
 #define PI 3.141592741f         // PI
 #define x2PI 6.283185482f       // PI * 2
 #define d2PI 1.570796371f       // PI / 2
 #define DEGREE 57.29578018f     // 1 Radian as Degrees
-#define RADIAN 0.01745329238f   // PI / 180 (1 Degree as Radians
+#define RADIAN 0.01745329238f   // PI / 180 (1 Degree as Radians)
+#define RAD2DEG DEGREE
+#define DEG2RAD RADIAN
 
 #define FLOAT_MAX 9223372036854775807.0f
 #define INV_FLOAT_MAX 1.084202172e-19F
@@ -34,16 +41,19 @@ float randf();  // uniform
 float randfn(); // box-muller normal
 int vec_ftoi(float f); // float to integer quantise
 
+// normalising the result is optional / at the callers responsibility
 void vRuv(vec* v);   // Random Unit Vector
-void vRuvTA(vec* v); // Random Unit Vector Trial & Error
-void vRuvS(vec* v);  // Random Unit Vector Sphere
+void vRuvN(vec* v);  // Normal Random Unit Vector
+void vRuvBT(vec* v); // Brian Tung Random Unit Vector
+void vRuvTA(vec* v); // T.Davison Trial & Error
+void vRuvTD(vec* v); // T.Davison Random Unit Vector Sphere
 
 void  vCross(vec* r, const vec v1, const vec v2);
 float vDot(const vec v1, const vec v2);
 void  vReflect(vec* r, const vec v, const vec n);
 
-int vEqualTol(const vec a, const vec b, const float tol);
-int vEqualInt(const vec a, const vec b);
+int  vEqualTol(const vec a, const vec b, const float tol);
+int  vEqualInt(const vec a, const vec b);
 void vMin(vec* r, const vec v1, const vec v2);
 void vMax(vec* r, const vec v1, const vec v2);
 
@@ -130,7 +140,7 @@ float randf()
     srandfq = _m_to_int64(mm0);
 
     _m_empty();
-    return ( fabs(srandfq+1e-7f) * INV_FLOAT_MAX );
+    return fabs(srandfq+1e-7f) * INV_FLOAT_MAX;
 }
 
 #endif
@@ -154,11 +164,30 @@ void vRuv(vec* v)
     v->x = (randf() * 2.f) - 1.f;
     v->y = (randf() * 2.f) - 1.f;
     v->z = (randf() * 2.f) - 1.f;
-    vNorm(v);
+}
+
+void vRuvN(vec* v)
+{
+    v->x = randfn();
+    v->y = randfn();
+    v->z = randfn();
+}
+
+void vRuvBT(vec* v)
+{
+    // https://math.stackexchange.com/a/1586185
+    // or should I have called this vRuvLR()
+    // https://mathworld.wolfram.com/SpherePointPicking.html
+    const float y = acosf((randf() * 2.f) - 1.f) - d2PI;
+    const float p = x2PI * randf();
+    v->x = cosf(y) * cosf(p);
+    v->y = cosf(y) * sinf(p);
+    v->z = sinf(y);
 }
 
 void vRuvTA(vec* v)
 {
+    // T.P.Davison@tees.ac.uk
     while(1)
     {
         v->x = (randf() * 2.f) - 1.f;
@@ -169,11 +198,11 @@ void vRuvTA(vec* v)
     }
 }
 
-void vRuvS(vec* v)
+void vRuvTD(vec* v)
 {
     // T.P.Davison@tees.ac.uk
-    v->x = sin((randf() * x2PI) - PI);
-    v->y = cos((randf() * x2PI) - PI);
+    v->x = sinf((randf() * x2PI) - PI);
+    v->y = cosf((randf() * x2PI) - PI);
     v->z = (randf() * 2.f) - 1.f;
 }
 
@@ -311,20 +340,20 @@ void vDir(vec* r, const vec v1, const vec v2)
 
 void vRotX(vec* v, const float radians)
 {
-    v->y = v->y * cos(radians) + v->z * sin(radians);
-    v->z = v->y * sin(radians) - v->z * cos(radians);
+    v->y = v->y * cosf(radians) + v->z * sinf(radians);
+    v->z = v->y * sinf(radians) - v->z * cosf(radians);
 }
 
 void vRotY(vec* v, const float radians)
 {
-    v->x = v->z * sin(radians) - v->x * cos(radians);
-    v->z = v->z * cos(radians) + v->x * sin(radians);
+    v->x = v->z * sinf(radians) - v->x * cosf(radians);
+    v->z = v->z * cosf(radians) + v->x * sinf(radians);
 }
 
 void vRotZ(vec* v, const float radians)
 {
-    v->x = v->x * cos(radians) + v->y * sin(radians);
-    v->y = v->x * sin(radians) - v->y * cos(radians);
+    v->x = v->x * cosf(radians) + v->y * sinf(radians);
+    v->y = v->x * sinf(radians) - v->y * cosf(radians);
 }
 
 void vAdd(vec* r, const vec v1, const vec v2)
