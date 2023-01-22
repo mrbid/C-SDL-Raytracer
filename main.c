@@ -267,7 +267,7 @@ void setPerspective(float fov)
     p_invHeight = 1.f / p_height;
 
     p_aspectratio = p_width * p_invHeight;
-    p_angle = tan(d2PI * p_fov * 0.005555556156f); // d2PI * p_fov / 180.f
+    p_angle = tanf(d2PI * p_fov * 0.005555556156f); // d2PI * p_fov / 180.f
     
     genRayTable();
 }
