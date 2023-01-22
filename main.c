@@ -42,10 +42,6 @@
         that utilises mutliple CPU cores. Until I realised that sending a 3.14mb screen buffer of only 1024x768
         a minimum of 30 times per second was ~100MB of data per second. Which means really raytracing on a CPU
         is only worth while if a render is going to take a long time before you bother trying to display it.
-        
-        Also I have some aliasing artifact that the original C++ code I transcribed the sphere intersection from
-        does not have. No idea what is causing it but it seems to be something to do with the rays diverging more
-        as they travel farther from the screen.
 
         I am not sure if I am going to continue this project because it just seems a little insane to do all this
         just so that I can raytrace some (at best) lambaritan spheres at ~30fps.
@@ -58,7 +54,7 @@
 
         To launch multi-threaded: ./ray multi
 
-        But only single threaded has crude sphere motion to demonstrate the distance aliasing.
+        Only single threaded has crude sphere motion to demonstrate the distance aliasing.
 
 */
 #include <SDL2/SDL.h>
