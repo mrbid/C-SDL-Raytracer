@@ -51,7 +51,7 @@
         just so that I can raytrace some (at best) lambaritan spheres at ~30fps.
 
         Also the multi-threaded mode does not seem to render anything on my graphics card. But it seems to work fine
-        on my integrated Intel Iris XE. ¯\_(ツ)_/¯ not that multi-threading a real-time raytracer has much benefit
+        on my integrated Intel Iris XE. Not that multi-threading a real-time raytracer has much benefit
         anyway unless you plan on going insane with the reflective rays I suppose - which is and was not my intention.
         
         If you are compiling on windows unzip SDL2.zip to the project directory.
