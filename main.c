@@ -68,6 +68,7 @@
 #include "sdl_extra.h"
 #include "icon.h"
 
+#define NOSSE
 #include "vec.h"
 
 #define uint unsigned int
